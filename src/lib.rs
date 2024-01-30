@@ -11,7 +11,7 @@ extern crate alloc;
 
 use alloc::string::ToString;
 use asr::{
-    deep_pointer::{DeepPointer, DerefType}, future::{next_tick, retry}, print_message, settings::{gui::Title, Gui}, time::Duration, timer::{self, TimerState}, watcher::Watcher, Address, Address64, Process
+    deep_pointer::{DeepPointer, DerefType}, future::{next_tick, retry}, print_message, settings::{gui::Title, Gui}, time::Duration, timer::{self, TimerState}, watcher::Watcher, Process
 };
 use field_names::FieldNames;
 asr::async_main!(nightly);
@@ -349,7 +349,7 @@ impl Memory {
                     finish_partial_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x154]);
                 }
             }
-            Err(err) => {
+            Err(_err) => {
                 print_message("ASR Error: Could not get operating system.");
             }
         }

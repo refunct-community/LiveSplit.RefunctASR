@@ -1,5 +1,5 @@
 [package]
-name = "livesplit-refunct"
+name = "livesplit_refunct"
 version = "0.1.0"
 edition = "2021"
 

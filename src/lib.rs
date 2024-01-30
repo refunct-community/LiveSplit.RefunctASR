@@ -342,7 +342,7 @@ impl Memory {
                     let base_address = retry(|| game.get_module_address("Refunct-Linux-Shipping")).await;
                     cubes_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x13C]);
                     buttons_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x140]);
-                    resets_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 00x148]);
+                    resets_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x148]);
                     start_seconds_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x148]);
                     start_partial_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x14C]);
                     finish_seconds_ptr = DeepPointer::new(base_address + 0x5068838, DerefType::Bit64, &[0x138, 0x150]);

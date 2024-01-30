@@ -21,7 +21,7 @@ cargo b --release
 
 The autosplitter is then available at:
 ```
-target/wasm32-unknown-unknown/release/livesplit_refunctasr.wasm
+target/wasm32-unknown-unknown/release/livesplit-refunct.wasm
 ```
 
 Make sure too look into the [API documentation](https://livesplit.org/asr/asr/) for the `asr` crate.

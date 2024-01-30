@@ -15,5 +15,4 @@ b = [
     "build",
     "-Z", "build-std=std,panic_abort",
     "-Z", "build-std-features=panic_immediate_abort",
-    "-Z", "link-arg=-fuse-ld=lld"
 ]

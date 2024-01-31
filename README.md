@@ -4,6 +4,13 @@ An auto splitter for Refunct, crated with Auto Splitting Runtime (ASR).
 
 Supports auto-start, auto-split and auto-reset.
 
+#### Auto-start
+- The autosplitter will automatically start upon **pressing New Game**.
+#### Auto-split
+- The autosplitter will automatically split upon **pressing a button** or **collecting a cube**. The specific settings for this can be found within the autosplitter's settings.
+#### Auto-reset
+- The autosplitter will automatically reset upon **pressing New Game**.
+
 ## Compilation
 
 This autosplitter is written in Rust. In order to compile it, you need to

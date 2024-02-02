@@ -1,0 +1,38 @@
+name: Build livesplit_refunct
+
+on:
+  workflow_call:
+    inputs:
+      upload_artifacts:
+        type: boolean
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout livesplit_refunct
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          components: rust-src
+          target: wasm32-unknown-unknown
+
+      - name: Build livesplit_refunct
+        run: cargo b --release --locked
+
+      - name: Upload livesplit_refunct build artifacts
+        if: ${{ inputs.upload_artifacts }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: livesplit_refunct-build-artifacts
+          path: target/wasm32-unknown-unknown/release/livesplit_refunct.wasm
+          retention-days: 1

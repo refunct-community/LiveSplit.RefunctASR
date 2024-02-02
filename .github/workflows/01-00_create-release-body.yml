@@ -1,0 +1,64 @@
+name: Create release body
+
+on:
+  workflow_call:
+    inputs:
+      description:
+        type: string
+        required: true
+      tag:
+        type: string
+        required: true
+      prerelease:
+        type: boolean
+        required: true
+    outputs:
+      body:
+        value: "${{ jobs.create-release-body.outputs.body }}"
+
+jobs:
+  create-release-body:
+    runs-on: ubuntu-latest
+
+    outputs:
+      body: "${{ steps.create-body.outputs.body }}"
+
+    steps:
+      - name: Checkout livesplit_refunct
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Fetch previous release
+        id: previous-release
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          latest: true
+          prerelease: ${{ !inputs.prerelease && 'false' || '' }}
+          doNotFailIfNotFound: true
+
+      - name: Create body
+        id: create-body
+        run: |
+          {
+            echo 'body<<EOF'
+
+            echo "${{ inputs.description }}"
+
+            if [ -n "${{ steps.previous-release.outputs.tag_name }}" ]; then
+              echo ""
+              echo "---"
+              echo "All changed files: https://github.com/${{ github.repository }}/compare/${{ steps.previous-release.outputs.tag_name }}...${{ inputs.tag }}."
+              echo "<details>"
+              echo "<summary><i>Detailed Change Log</i></summary>"
+              echo "<br/>"
+              echo ""
+              TZ=UTC0 git log --reverse --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- [%ad] %s (%H)" ${{ steps.previous-release.outputs.tag_name }}..HEAD
+              echo "</details>"
+            fi
+
+            echo EOF
+          } >> $GITHUB_OUTPUT

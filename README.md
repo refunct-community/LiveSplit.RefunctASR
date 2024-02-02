@@ -1,4 +1,4 @@
-# livesplit_refunct
+# livesplit-refunct
 
 An auto splitter for Refunct, crated with Auto Splitting Runtime (ASR).
 
@@ -28,7 +28,7 @@ cargo b --release
 
 The autosplitter is then available at:
 ```
-target/wasm32-unknown-unknown/release/livesplit_refunct.wasm
+target/wasm32-unknown-unknown/release/livesplit-refunct.wasm
 ```
 
 Make sure to look into the [API documentation](https://livesplit.org/asr/asr/) for the `asr` crate.

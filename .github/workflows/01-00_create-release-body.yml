@@ -24,7 +24,7 @@ jobs:
       body: "${{ steps.create-body.outputs.body }}"
 
     steps:
-      - name: Checkout livesplit_refunct
+      - name: Checkout livesplit-refunct
         uses: actions/checkout@v4
         with:
           fetch-depth: 0

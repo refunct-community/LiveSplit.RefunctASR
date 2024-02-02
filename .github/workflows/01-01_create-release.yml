@@ -35,18 +35,18 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout livesplit_refunct
+      - name: Checkout livesplit-refunct
         uses: actions/checkout@v4
 
-      - name: Load livesplit_refunct.wasm artifact
+      - name: Load livesplit-refunct.wasm artifact
         uses: actions/download-artifact@v4
         with:
-          name: livesplit_refunct-build-artifacts
+          name: livesplit-refunct-build-artifacts
 
-      - name: Delete livesplit_refunct.wasm artifact
+      - name: Delete livesplit-refunct.wasm artifact
         uses: geekyeggo/delete-artifact@v2
         with:
-          name: livesplit_refunct-build-artifacts
+          name: livesplit-refunct-build-artifacts
           failOnError: false
 
       - name: Create release
@@ -57,17 +57,17 @@ jobs:
         with:
           tag_name: ${{ inputs.tag }}
           release_name: >
-            livesplit_refunct
+            livesplit-refunct
             ${{ inputs.tag }}
           body: ${{ needs.create-release-body.outputs.body }}
           prerelease: ${{ inputs.prerelease }}
 
-      - name: Upload livesplit_refunct.wasm as release asset
+      - name: Upload livesplit-refunct.wasm as release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ./livesplit_refunct.wasm
-          asset_name: livesplit_refunct.wasm
+          asset_name: livesplit-refunct.wasm
           asset_content_type: application/wasm
